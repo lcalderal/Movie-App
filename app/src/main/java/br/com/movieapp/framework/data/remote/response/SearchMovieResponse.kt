@@ -2,7 +2,7 @@ package br.com.movieapp.framework.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class SearchResponse(
+data class SearchMovieResponse(
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdropPath: String,
     @SerializedName("budget") val budget: Int,

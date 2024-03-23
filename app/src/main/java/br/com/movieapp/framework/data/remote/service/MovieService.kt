@@ -2,7 +2,7 @@ package br.com.movieapp.framework.data.remote.service
 
 import br.com.movieapp.framework.data.remote.response.MovieDetailResponse
 import br.com.movieapp.framework.data.remote.response.MovieResponse
-import br.com.movieapp.framework.data.remote.response.SearchResponse
+import br.com.movieapp.framework.data.remote.response.SearchMovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -18,7 +18,7 @@ interface MovieService {
     suspend fun searchMovies(
         @Query("page") page: Int,
         @Query("query") query: String,
-    ): SearchResponse
+    ): SearchMovieResponse
 
     @GET("movie/{movie_id}")
     suspend fun getMovie(
