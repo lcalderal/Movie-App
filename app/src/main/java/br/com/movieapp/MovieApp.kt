@@ -1,4 +1,4 @@
-package br.com.movieapp.di
+package br.com.movieapp
 
 import android.app.Application
 import br.com.movieapp.BuildConfig

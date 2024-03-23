@@ -1,4 +1,4 @@
-package br.com.movieapp.core.data.remote.response
+package br.com.movieapp.framework.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
