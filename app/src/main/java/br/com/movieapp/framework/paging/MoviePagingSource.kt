@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import br.com.movieapp.features.moviepopular.data.mapper.toMovieItem
 import br.com.movieapp.features.moviepopular.domain.source.MoviePopularRemoteDataSource
-import br.com.movieapp.framework.domain.model.MovieItem
+import br.com.movieapp.framework.domain.model.Movie
 import okio.IOException
 import retrofit2.HttpException
 
@@ -18,7 +18,7 @@ private const val LIMIT = 20
  */
 class MoviePagingSource(
     private val remoteDataSource: MoviePopularRemoteDataSource
-) : PagingSource<Int, MovieItem>() {
+) : PagingSource<Int, Movie>() {
 
     /**
      * Get the key for the page that was most recently accessed.
@@ -26,7 +26,7 @@ class MoviePagingSource(
      * @param state The current [PagingState].
      * @return The key of the page that was most recently accessed.
      */
-    override fun getRefreshKey(state: PagingState<Int, MovieItem>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(LIMIT) ?: anchorPage?.nextKey?.minus(LIMIT)
@@ -39,7 +39,7 @@ class MoviePagingSource(
      * @param params The parameters for the load operation.
      * @return The result of the load operation, which includes the page of data and the keys for the adjacent pages.
      */
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieItem> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
             val pageNumber = params.key ?: 1
             val response = remoteDataSource.getPopularMovies(pageNumber)

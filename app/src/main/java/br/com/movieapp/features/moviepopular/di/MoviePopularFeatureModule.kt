@@ -5,6 +5,7 @@ import br.com.movieapp.features.moviepopular.data.source.MoviePopularRemoteDataS
 import br.com.movieapp.features.moviepopular.domain.repository.MoviePopularRepository
 import br.com.movieapp.features.moviepopular.domain.source.MoviePopularRemoteDataSource
 import br.com.movieapp.features.moviepopular.domain.usecase.GetMoviesPopularUseCase
+import br.com.movieapp.features.moviepopular.presentation.MoviePopularViewModel
 import br.com.movieapp.framework.data.remote.service.MovieService
 import dagger.Module
 import dagger.Provides
@@ -36,5 +37,13 @@ object MoviePopularFeatureModule {
         repository: MoviePopularRepository
     ): GetMoviesPopularUseCase {
         return GetMoviesPopularUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoviePopularViewModel(
+        getMoviesPopularUseCase: GetMoviesPopularUseCase
+    ): MoviePopularViewModel {
+        return MoviePopularViewModel(getMoviesPopularUseCase)
     }
 }
